@@ -51,7 +51,7 @@ public class HangmanCanvas extends GCanvas {
  */
 	public void noteIncorrectGuess(String incorrectGuesses) {
 		//adds the label with the incorrect letters
-		double x = getWidth()/4;
+		double x = getWidth()/100;
 		double y = getHeight() - HEAD_RADIUS;
 		GLabel incorrectLetters = new GLabel(incorrectGuesses, x, y);
 		add(incorrectLetters);
@@ -60,20 +60,28 @@ public class HangmanCanvas extends GCanvas {
 		switch (incorrectGuesses.length()) {
 			case 1:
 				drawHead();
+				break;
 			case 2:
 				drawBody();
+				break;
 			case 3:
 				drawLeftArm();
+				break;
 			case 4:
 				drawRightArm();
+				break;
 			case 5:
 				drawLeftLeg();
+				break;
 			case 6:
 				drawRightLeg();
+				break;
 			case 7:
 				drawLeftFoot();
+				break;
 			default:
 				drawRightFoot();
+				break;
 		}
 	}
 	

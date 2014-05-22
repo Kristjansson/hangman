@@ -53,6 +53,9 @@ public class Hangman extends ConsoleProgram {
     public void setUpGame() {
     	canvas.reset();
     	hiddenWord = showNumberOfLetters();
+    	if(word.indexOf(' ') != -1){
+    		letterFill(' ');
+    	}
     	canvas.displayWord(hiddenWord);
     	println("Welcome to Hangman!");
     	println("The word now looks like this: " + hiddenWord);
@@ -65,6 +68,9 @@ public class Hangman extends ConsoleProgram {
     	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
     	String pickedWord = hangmanWords.getWord(randomWord);
     	return pickedWord;
+    	
+//    	//test for multiple words
+//    	return "BISHOP BLANCHET BRAVES";
     }
 	
     //Shows how many letters there are in the word as part of game setup
@@ -146,16 +152,20 @@ public class Hangman extends ConsoleProgram {
 		}
 		if(word.indexOf(ch) != -1) {
 			println("The guess is correct.");
+			letterFill(ch);
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
+		
+	}
+	private void letterFill(char c){
 		for(int i = 0; i < word.length(); i++) {
-			if (ch == word.charAt(i)) {
+			if (c == word.charAt(i)) {
 				if (i > 0) {
-					hiddenWord = hiddenWord.substring(0, i) + ch + hiddenWord.substring(i + 1);
+					hiddenWord = hiddenWord.substring(0, i) + c + hiddenWord.substring(i + 1);
 				}
 				if(i == 0) {
-					hiddenWord = ch + hiddenWord.substring(1);
+					hiddenWord = c + hiddenWord.substring(1);
 				}
 				canvas.displayWord(hiddenWord);
 			}

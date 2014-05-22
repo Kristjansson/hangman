@@ -82,6 +82,9 @@ public class Hangman extends ConsoleProgram {
 			if(getChar.length() > 1) {
 				getChar = readLine("You can only guess one letter at a time. Try again: ");
 			}
+			if(incorrectLetters.indexOf(getChar) != -1){
+				getChar = readLine("You already guessed this letter. Try again: ");
+			}
 			if(getChar.length() == 1) break;
 		}
 		ch = getChar.toUpperCase().charAt(0);
